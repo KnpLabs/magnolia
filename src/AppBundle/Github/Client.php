@@ -8,12 +8,13 @@ class Client
 {
     private $client;
 
-    public function __construct(string $githubToken)
+    public function __construct(string $githubLogin, string $githubPassword)
     {
         $this->client = new GithubAPI();
         $this->client->authenticate(
-            $githubToken,
-            GithubAPI::AUTH_HTTP_TOKEN
+            $githubLogin,
+            $githubPassword,
+            GithubAPI::AUTH_HTTP_PASSWORD
         );
     }
 
