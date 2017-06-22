@@ -35,4 +35,5 @@ services:
     #         $someArgument: 'some_value'
     AppBundle\Github\Client:
         arguments:
-            $githubToken: '%github_token%'
+            $githubLogin: '%github_login%'
+            $githubPassword: '%github_password%'
