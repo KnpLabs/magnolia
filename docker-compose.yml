@@ -7,7 +7,7 @@ services:
         volumes:
             - './:/var/www/app'
         environment:
-            - github_token=1f758487f9e2eeb0e78b096b3cada56f866ea248
+            - APP_GITHUB_TOKEN=b38c215c506a4d6c49a8f717e5f00dde9ae09593
 
     mysql:
         image: mysql:5.7
@@ -16,4 +16,3 @@ services:
             - MYSQL_DATABASE=raw_events
             - MYSQL_USER=app
             - MYSQL_PASSWORD=app
-            - github_token=1f758487f9e2eeb0e78b096b3cada56f866ea248

@@ -51,7 +51,14 @@ class AppKernel extends Kernel
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
 
-        $envParameters = $this->getEnvParameters();
+        $envParameters = [];
+        foreach ($_ENV as $var => $value) {
+            if (0 !== strpos($var, 'APP_')) {
+                continue;
+            }
+
+            $envParameters[mb_strtolower(substr($var, 4))] = $value;
+        }
         $loader->load(function ($container) use ($envParameters) {
             $container->getParameterBag()->add($envParameters);
         });
