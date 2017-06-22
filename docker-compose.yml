@@ -14,3 +14,4 @@ services:
             - MYSQL_DATABASE=raw_events
             - MYSQL_USER=app
             - MYSQL_PASSWORD=app
+            - SYMFONY__GITHUB_TOKEN=1f758487f9e2eeb0e78b096b3cada56f866ea248
