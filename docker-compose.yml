@@ -1,0 +1,16 @@
+version: '2.1'
+
+services:
+    php:
+        image: php:7.0-cli
+        working_dir: /var/www/app
+        volumes:
+            - './:/var/www/app'
+
+    mysql:
+        image: mysql:5.7
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=raw_events
+            - MYSQL_USER=app
+            - MYSQL_PASSWORD=app
