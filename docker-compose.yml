@@ -2,7 +2,9 @@ version: '2.1'
 
 services:
     php:
-        image: php:7.0-cli
+        build:
+          context: .
+          dockerfile: docker/php/Dockerfile
         working_dir: /var/www/app
         volumes:
             - './:/var/www/app'

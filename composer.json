@@ -7,8 +7,7 @@
             "": "src/"
         },
         "classmap": [
-            "app/AppKernel.php",
-            "app/AppCache.php"
+            "app/AppKernel.php"
         ]
     },
     "autoload-dev": {
@@ -27,6 +26,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/github-api": "^2.4",
         "php-http/guzzle6-adapter": "^1.1",
+        "ramsey/uuid": "^3.6",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "symfony/monolog-bundle": "^3.1.0",
@@ -38,20 +38,6 @@
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
-    },
-    "scripts": {
-        "symfony-scripts": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-        ],
-        "post-install-cmd": [
-            "@symfony-scripts"
-        ],
-        "post-update-cmd": [
-            "@symfony-scripts"
-        ]
     },
     "config": {
         "sort-packages": true
