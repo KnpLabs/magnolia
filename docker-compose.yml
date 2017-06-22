@@ -6,6 +6,8 @@ services:
         working_dir: /var/www/app
         volumes:
             - './:/var/www/app'
+        environment:
+            - APP_GITHUB_TOKEN=b38c215c506a4d6c49a8f717e5f00dde9ae09593
 
     mysql:
         image: mysql:5.7
