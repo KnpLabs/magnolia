@@ -29,3 +29,12 @@ services:
             user: '%db_user%'
             password: '%db_password%'
             host: '%db_host%'
+            serverVersion: '5.7'
+
+    AppBundle\Command\CreateSchema:
+        class: AppBundle\Command\CreateSchema
+        arguments:
+            $dbal: "@Doctrine\\DBAL\\Connection"
+            $dbName: '%db_name%'
+        tags:
+          - { name: console.command }
