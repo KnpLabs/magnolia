@@ -1,24 +1,19 @@
 services:
-    _defaults:
-        public: false
+    app.command.fetch_repo_events:
+        class: AppBundle\Command\FetchRepoEvents
+        arguments: ["@use_cases.fetch_repo_events.use_case"]
+        tags:
+            - { name: console.command }
 
-    AppBundle\Command\:
-        resource: '../../src/AppBundle/Command'
-        public: true
-        autowire: true
-        autoconfigure: true
-
-    AppBundle\Controller\:
-        resource: '../../src/AppBundle/Controller'
-        public: true
-        autowire: true
-        autoconfigure: true
-        tags: ['controller.service_arguments']
-
-    AppBundle\Github\Client:
+    infrastructure.github.event_fetcher:
+        class: Infrastructure\Github\EventFetcher
         arguments:
-            $githubLogin: '%github_login%'
-            $githubPassword: '%github_password%'
+            - '%github_login%'
+            - '%github_password%'
+
+    use_cases.fetch_repo_events.use_case:
+        class: UseCases\FetchRepoEvents\UseCase
+        arguments: ["@infrastructure.github.event_fetcher"]
 
     Doctrine\DBAL\Connection:
         class: Doctrine\DBAL\Connection
