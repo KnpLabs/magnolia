@@ -34,7 +34,7 @@ class ReadFeeds extends Command
     protected function configure()
     {
         $this
-            ->setName('magnolia:feed:summary')
+            ->setName('magnolia:feeds:summary')
             ->addArgument('userId', InputArgument::OPTIONAL, '', $this->defaultUserId)
             ->setDescription('Read a summary of feeds for a user')
         ;
