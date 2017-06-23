@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AppBundle\Command;
 
+use Domain\Model\Feed;
 use Symfony\Component\Console\Command\Command;
 use UseCases\FetchFeeds as UseCase;
 use Symfony\Component\Console\Input\InputArgument;
@@ -33,7 +34,7 @@ class FetchFeeds extends Command
     protected function configure()
     {
         $this
-            ->setName('magnolia:fetch:feeds')
+            ->setName('magnolia:feed:fetch')
             ->addArgument('userId', InputArgument::OPTIONAL, '', $this->defaultUserId)
             ->setDescription('Fetch all feeds for a user')
         ;
@@ -45,12 +46,12 @@ class FetchFeeds extends Command
         $response = $this->useCase->__invoke($request);
 
         if ($response->isSuccessful()) {
-            $outputData = array_map(function($feed) {
-                return [$feed->getId(), $feed->getUserId()];
+            $outputData = array_map(function(Feed $feed) {
+                return [$feed->getId(), $feed->getName()];
             }, $response->getFeeds());
 
             $table = new Table($output);
-            $table->setHeaders(['id', 'userId']);
+            $table->setHeaders(['id', 'name']);
             $table->setRows($outputData);
             $table->render();
 

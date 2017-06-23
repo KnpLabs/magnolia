@@ -14,6 +14,11 @@ trait CanHaveErrors
         return empty($this->errors);
     }
 
+    public function isFailed(): bool
+    {
+        return !$this->isSuccessful();
+    }
+
     public function getErrors(): array
     {
         return $this->errors;

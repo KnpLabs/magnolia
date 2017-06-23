@@ -21,6 +21,7 @@ class FeedPersister implements Domain\FeedPersister
     {
         $stmt = $this->connection->insert(Tables::FEEDS, [
             'id' => $feed->getId(),
+            'name' => $feed->getName(),
             'userId' => $feed->getUserId(),
         ]);
     }
