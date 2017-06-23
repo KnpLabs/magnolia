@@ -24,7 +24,7 @@
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "incenteev/composer-parameter-handler": "^2.0",
-        "knplabs/github-api": "^2.4",
+        "knplabs/github-api": "dev-repo-events",
         "php-http/guzzle6-adapter": "^1.1",
         "ramsey/uuid": "^3.6",
         "sensio/distribution-bundle": "^5.0.19",
@@ -54,5 +54,11 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": null
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/NiR-/php-github-api"
+        }
+    ]
 }
