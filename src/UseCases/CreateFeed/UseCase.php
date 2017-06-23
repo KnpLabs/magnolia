@@ -6,6 +6,7 @@ namespace UseCases\CreateFeed;
 
 use Domain\FeedPersister;
 use Domain\Model\Feed;
+use Domain\Model\Repository;
 
 class UseCase
 {
@@ -25,7 +26,9 @@ class UseCase
             return Response::failed($errors);
         }
 
-        $feed = Feed::create($request->getName(), $request->getUserId());
+        $repositories = array_map([Repository::class, 'fromFullName'], $request->getRepositories());
+        $feed = Feed::create($request->getName(), $request->getUserId(), $repositories);
+
         $this->persister->save($feed);
 
         return Response::succeeded($feed->getId());

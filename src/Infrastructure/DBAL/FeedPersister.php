@@ -23,6 +23,7 @@ class FeedPersister implements Domain\FeedPersister
             'id' => $feed->getId(),
             'name' => $feed->getName(),
             'userId' => $feed->getUserId(),
+            'repositories' => $feed->
         ]);
     }
 }
