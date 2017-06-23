@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace UseCases\DetailFeed;
 
 use Domain\FeedFetcher;
-use Domain\EventFetcher;
+use Domain\RawEventFetcher;
 
 class UseCase
 {
@@ -13,7 +13,7 @@ class UseCase
 
     private $eventFetcher;
 
-    public function __construct(FeedFetcher $feedFetcher, EventFetcher $eventFetcher)
+    public function __construct(FeedFetcher $feedFetcher, RawEventFetcher $eventFetcher)
     {
         $this->feedFetcher = $feedFetcher;
         $this->eventFetcher = $eventFetcher;

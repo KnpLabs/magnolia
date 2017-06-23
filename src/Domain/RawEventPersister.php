@@ -2,7 +2,7 @@
 
 namespace Domain;
 
-interface EventPersister
+interface RawEventPersister
 {
     public function saveMany(array $events);
 }

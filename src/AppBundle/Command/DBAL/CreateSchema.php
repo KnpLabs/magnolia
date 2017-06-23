@@ -68,7 +68,7 @@ class CreateSchema extends Command
         ]);
         $feeds->setPrimaryKey(["id"]);
 
-        $events = $schema->createTable(Tables::EVENTS);
+        $events = $schema->createTable(Tables::RAW_EVENTS);
         $events->addColumn('id', 'string', ['length' => 36, 'notnull' => true]);
         $events->addColumn('payload', 'json', ['notnull' => true]);
         $events->addColumn('date', 'datetime', ['notnull' => true]);

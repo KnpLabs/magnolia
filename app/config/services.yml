@@ -11,8 +11,8 @@ services:
         tags:
             - { name: console.command }
 
-    infrastructure.github.event_fetcher:
-        class: Infrastructure\Github\EventFetcher
+    infrastructure.github.raw_event_fetcher:
+        class: Infrastructure\Github\RawEventFetcher
         arguments:
             - '%github_login%'
             - '%github_password%'
@@ -25,8 +25,8 @@ services:
     use_cases.fetch_repo_events.use_case:
         class: UseCases\FetchRepoEvents\UseCase
         arguments:
-            - "@infrastructure.github.event_fetcher"
-            - "@infrastructure.dbal.event_persister"
+            - "@infrastructure.github.raw_event_fetcher"
+            - "@infrastructure.dbal.raw_event_persister"
 
     use_cases.read_feeds.use_case:
         class: UseCases\ReadFeeds\UseCase
@@ -69,7 +69,7 @@ services:
         arguments:
             - "@connection"
 
-    infrastructure.dbal.event_persister:
-        class: Infrastructure\DBAL\EventPersister
+    infrastructure.dbal.raw_event_persister:
+        class: Infrastructure\DBAL\RawEventPersister
         arguments:
             - "@connection"

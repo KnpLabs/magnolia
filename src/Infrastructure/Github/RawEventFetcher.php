@@ -8,7 +8,7 @@ use Domain;
 use Github\Client;
 use Psr\Http\Message\ResponseInterface;
 
-class EventFetcher implements Domain\EventFetcher
+class RawEventFetcher implements Domain\RawEventFetcher
 {
     /** @var Client */
     private $client;

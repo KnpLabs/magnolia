@@ -6,7 +6,7 @@ namespace Domain\Model;
 
 use Ramsey\Uuid\Uuid;
 
-class Event
+class RawEvent
 {
     /** @var string */
     private $id;

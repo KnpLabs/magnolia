@@ -7,7 +7,7 @@ namespace Infrastructure\DBAL;
 use Doctrine\DBAL\Connection;
 use Domain;
 
-class EventPersister implements Domain\EventPersister
+class RawEventPersister implements Domain\RawEventPersister
 {
     /** @var Connection */
     private $connection;
@@ -18,12 +18,12 @@ class EventPersister implements Domain\EventPersister
     }
 
     /**
-     * @param array|Domain\Model\Event[] $events
+     * @param array|Domain\Model\RawEvent[] $events
      */
     public function saveMany(array $events)
     {
         foreach ($events as $event) {
-            $this->connection->insert(Tables::EVENTS, [
+            $this->connection->insert(Tables::RAW_EVENTS, [
                 'id'         => $event->getId(),
                 'payload'    => $event->getPayload(),
                 'date'       => $event->getDate(),
