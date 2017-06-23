@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "757a2f0e2638ad24239a9e380debd69d",
+    "content-hash": "aa38669c64473e2d4afb0420b21fbdfc",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1217,16 +1217,16 @@
         },
         {
             "name": "knplabs/github-api",
-            "version": "2.4.0",
+            "version": "dev-repo-events",
             "source": {
                 "type": "git",
-                "url": "https://github.com/KnpLabs/php-github-api.git",
-                "reference": "eba0b92a4e23dd37abd75f99323a1b463b205d77"
+                "url": "https://github.com/NiR-/php-github-api.git",
+                "reference": "508d68f1f06248c316c67d037ea2590301f8e59e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/eba0b92a4e23dd37abd75f99323a1b463b205d77",
-                "reference": "eba0b92a4e23dd37abd75f99323a1b463b205d77",
+                "url": "https://api.github.com/repos/NiR-/php-github-api/zipball/508d68f1f06248c316c67d037ea2590301f8e59e",
+                "reference": "508d68f1f06248c316c67d037ea2590301f8e59e",
                 "shasum": ""
             },
             "require": {
@@ -1250,7 +1250,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4.x-dev"
+                    "dev-master": "2.5.x-dev"
                 }
             },
             "autoload": {
@@ -1258,19 +1258,18 @@
                     "Github\\": "lib/Github/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
                     "name": "Thibault Duplessis",
                     "email": "thibault.duplessis@gmail.com",
                     "homepage": "http://ornicar.github.com"
-                },
-                {
-                    "name": "KnpLabs Team",
-                    "homepage": "http://knplabs.com"
                 }
             ],
             "description": "GitHub API v3 client",
@@ -1281,7 +1280,10 @@
                 "gist",
                 "github"
             ],
-            "time": "2017-05-10T13:37:39+00:00"
+            "support": {
+                "source": "https://github.com/NiR-/php-github-api/tree/repo-events"
+            },
+            "time": "2017-06-23 08:54:01"
         },
         {
             "name": "monolog/monolog",
@@ -3874,8 +3876,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "knplabs/github-api": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
