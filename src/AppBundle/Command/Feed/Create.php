@@ -32,6 +32,7 @@ class Create extends Command
         $this
             ->setName('magnolia:feed:create')
             ->addArgument('name', InputArgument::REQUIRED)
+            ->addArgument('repositories', InputArgument::REQUIRED | InputArgument::IS_ARRAY)
         ;
     }
 
@@ -40,7 +41,8 @@ class Create extends Command
         $io = new SymfonyStyle($input, $output);
         $request = new UseCase\Request(
             $input->getArgument('name'),
-            $this->userId
+            $this->userId,
+            $input->getArgument('repositories')
         );
 
         $response = $this->useCase->__invoke($request);
