@@ -5,9 +5,9 @@ services:
         tags:
             - { name: console.command }
 
-    app.command.feed.summary:
-        class: AppBundle\Command\Feed\Summary
-        arguments: ["@use_cases.fetch_feeds.use_case", '%temp_user_uuid%']
+    app.command.feed.read_summary:
+        class: AppBundle\Command\Feed\ReadFeeds
+        arguments: ["@use_cases.read_feeds.use_case", '%temp_user_uuid%']
         tags:
             - { name: console.command }
 
@@ -28,8 +28,8 @@ services:
             - "@infrastructure.github.event_fetcher"
             - "@infrastructure.dbal.event_persister"
 
-    use_cases.fetch_feeds.use_case:
-        class: UseCases\FetchFeeds\UseCase
+    use_cases.read_feeds.use_case:
+        class: UseCases\ReadFeeds\UseCase
         arguments: ["@infrastructure.dbal.feed_fetcher"]
 
     connection:

@@ -6,13 +6,13 @@ namespace AppBundle\Command\Feed;
 
 use Domain\Model\Feed;
 use Symfony\Component\Console\Command\Command;
-use UseCases\FetchFeeds as UseCase;
+use UseCases\ReadFeeds as UseCase;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\Table;
 
-class Summary extends Command
+class ReadFeeds extends Command
 {
     /** @var UseCase\UseCase */
     private $useCase;
@@ -36,7 +36,7 @@ class Summary extends Command
         $this
             ->setName('magnolia:feed:summary')
             ->addArgument('userId', InputArgument::OPTIONAL, '', $this->defaultUserId)
-            ->setDescription('Fetch a summary of feeds for a user')
+            ->setDescription('Read a summary of feeds for a user')
         ;
     }
 

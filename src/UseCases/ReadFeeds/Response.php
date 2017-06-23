@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UseCases\FetchFeeds;
+namespace UseCases\ReadFeeds;
 
 use Domain\Model;
 use UseCases\CanHaveErrors;
