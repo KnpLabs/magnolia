@@ -5,18 +5,25 @@ declare(strict_types=1);
 namespace UseCases\FetchRepoEvents;
 
 use Domain\EventFetcher;
+use Domain\EventPersister;
+use Domain\Model\Event;
+use Domain\Model\Repository;
 
 class UseCase
 {
     /** @var EventFetcher */
     private $fetcher;
 
+    /** @var EventPersister */
+    private $persister;
+
     /**
      * @param EventFetcher $fetcher
      */
-    public function __construct(EventFetcher $fetcher)
+    public function __construct(EventFetcher $fetcher, EventPersister $persister)
     {
         $this->fetcher = $fetcher;
+        $this->persister = $persister;
     }
 
     /**
@@ -30,7 +37,16 @@ class UseCase
 
         list($owner, $repo) = explode('/', $request->getRepository());
 
-        $events = $this->fetcher->fetchEvents($owner, $repo);
+        $fetched = $this->fetcher->fetchEvents($owner, $repo);
+        $events = array_map(function ($raw) {
+            return Event::ingest(
+                $raw,
+                new \DateTime($raw['created_at']),
+                Repository::fromFullName($raw['repo']['name'])
+            );
+        }, $fetched);
+
+        $this->persister->saveMany($events);
 
         return Response::succeeded(count($events));
     }

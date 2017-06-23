@@ -7,4 +7,6 @@ namespace Infrastructure\DBAL;
 interface Tables
 {
     const FEEDS = 'feeds';
+
+    const EVENTS = 'events';
 }

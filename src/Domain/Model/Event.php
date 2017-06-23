@@ -38,6 +38,11 @@ class Event
         );
     }
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getPayload(): array
     {
         return $this->payload;

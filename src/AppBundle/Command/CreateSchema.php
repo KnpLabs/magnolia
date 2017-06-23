@@ -65,6 +65,14 @@ class CreateSchema extends Command
         ]);
         $feeds->setPrimaryKey(["id"]);
 
+        $events = $schema->createTable(Tables::EVENTS);
+        $events->addColumn('id', 'string', ['length' => 36, 'notnull' => true]);
+        $events->addColumn('payload', 'json_array', ['notnull' => true]);
+        $events->addColumn('date', 'datetime', ['notnull' => true]);
+        $events->addColumn('repo_owner', 'string', ['notnull' => true]);
+        $events->addColumn('repo_name', 'string', ['notnull' => true]);
+        $events->setPrimaryKey(['id']);
+
         $queries = $schema->toSql($this->dbal->getDatabasePlatform());
         foreach($queries as $query) {
             $this->dbal->executeQuery($query);

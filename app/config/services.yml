@@ -24,7 +24,9 @@ services:
 
     use_cases.fetch_repo_events.use_case:
         class: UseCases\FetchRepoEvents\UseCase
-        arguments: ["@infrastructure.github.event_fetcher"]
+        arguments:
+            - "@infrastructure.github.event_fetcher"
+            - "@infrastructure.dbal.event_persister"
 
     use_cases.fetch_feeds.use_case:
         class: UseCases\FetchFeeds\UseCase
@@ -64,5 +66,10 @@ services:
 
     infrastructure.dbal.feed_persister:
         class: Infrastructure\DBAL\FeedPersister
+        arguments:
+            - "@connection"
+
+    infrastructure.dbal.event_persister:
+        class: Infrastructure\DBAL\EventPersister
         arguments:
             - "@connection"
