@@ -5,17 +5,32 @@ services:
         tags:
             - { name: console.command }
 
+    app.command.fetch_feeds:
+        class: AppBundle\Command\FetchFeeds
+        arguments: ["@use_cases.fetch_feeds.use_case", '%temp_user_uuid%']
+        tags:
+            - { name: console.command }
+
     infrastructure.github.event_fetcher:
         class: Infrastructure\Github\EventFetcher
         arguments:
             - '%github_login%'
             - '%github_password%'
 
+    infrastructure.dbal.feed_fetcher:
+        class: Infrastructure\DBAL\FeedFetcher
+        arguments:
+            - '@connection'
+
     use_cases.fetch_repo_events.use_case:
         class: UseCases\FetchRepoEvents\UseCase
         arguments: ["@infrastructure.github.event_fetcher"]
 
-    Doctrine\DBAL\Connection:
+    use_cases.fetch_feeds.use_case:
+        class: UseCases\FetchFeeds\UseCase
+        arguments: ["@infrastructure.dbal.feed_fetcher"]
+
+    connection:
         class: Doctrine\DBAL\Connection
         factory: ["Doctrine\\DBAL\\DriverManager", "getConnection"]
         arguments:
@@ -29,7 +44,7 @@ services:
     AppBundle\Command\CreateSchema:
         class: AppBundle\Command\CreateSchema
         arguments:
-            $dbal: "@Doctrine\\DBAL\\Connection"
+            $dbal: '@connection'
             $dbName: '%db_name%'
         tags:
           - { name: console.command }

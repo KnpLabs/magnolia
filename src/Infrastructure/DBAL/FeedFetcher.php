@@ -17,7 +17,7 @@ class FeedFetcher implements Domain\FeedFetcher
         $this->dbal = $dbal;
     }
 
-    public function getAllFeeds(string $userId)
+    public function fetchFeeds(string $userId): array
     {
         $sql = 'SELECT * FROM feeds WHERE userId = :userId';
         $stmt = $this->dbal->prepare($sql);
