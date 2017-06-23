@@ -61,5 +61,8 @@ class Feed
         return $this->userId;
     }
 
-    public function
+    public function getRepositories(): array
+    {
+        return $this->repositories;
+    }
 }

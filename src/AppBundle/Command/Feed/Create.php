@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppBundle\Command\Feeds;
+namespace AppBundle\Command\Feed;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

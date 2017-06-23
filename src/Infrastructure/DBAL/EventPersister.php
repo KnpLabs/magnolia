@@ -30,7 +30,7 @@ class EventPersister implements Domain\EventPersister
                 'repo_owner' => $event->getRepository()->getOwner(),
                 'repo_name'  => $event->getRepository()->getName(),
             ], [
-                'payload' => 'json_array',
+                'payload' => 'json',
                 'date' => 'datetime',
             ]);
         }

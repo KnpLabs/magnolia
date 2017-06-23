@@ -20,9 +20,8 @@
     },
     "require": {
         "php": ">=5.5.9",
-        "doctrine/dbal": "^2.5",
+        "doctrine/dbal": "dev-master@dev",
         "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/orm": "^2.5",
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/github-api": "dev-repo-events",
         "php-http/guzzle6-adapter": "^1.1",

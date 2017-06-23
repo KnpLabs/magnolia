@@ -19,11 +19,19 @@ class FeedPersister implements Domain\FeedPersister
 
     public function save(Model\Feed $feed)
     {
-        $stmt = $this->connection->insert(Tables::FEEDS, [
-            'id' => $feed->getId(),
-            'name' => $feed->getName(),
-            'userId' => $feed->getUserId(),
-            'repositories' => $feed->
-        ]);
+        $stmt = $this->connection->insert(
+            Tables::FEEDS,
+            [
+                'id' => $feed->getId(),
+                'name' => $feed->getName(),
+                'userId' => $feed->getUserId(),
+                'repositories' => array_map(function($repository) {
+                    return $repository->getFullName();
+                }, $feed->getRepositories())
+            ],
+            [
+                'repositories' => 'json'
+            ]
+        );
     }
 }

@@ -27,7 +27,17 @@ class FeedFetcher implements Domain\FeedFetcher
         $feedsData = $stmt->fetchAll();
 
         return array_map(function($data) {
-            return new Feed($data['id'], $data['name'], $data['userId']);
+            return new Feed($data['id'], $data['name'], $data['userId'], $data['repositories']);
         }, $feedsData);
+    }
+
+    public function fetchFeed(string $feedId): Feed?
+    {
+        $sql = 'SELECT * FROM feeds WHERE id = :id';
+        $stmt = $this->dbal->prepare($sql);
+        $stmt->bindValue('id', $feedId);
+        $stmt->execute();
+
+        return $stmt->fetch();
     }
 }
