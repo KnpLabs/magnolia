@@ -1,12 +1,12 @@
 services:
-    app.command.fetch_repo_events:
-        class: AppBundle\Command\FetchRepoEvents
+    app.command.repository_event.fetch:
+        class: AppBundle\Command\RepositoryEvent\Fetch
         arguments: ["@use_cases.fetch_repo_events.use_case"]
         tags:
             - { name: console.command }
 
-    app.command.fetch_feeds:
-        class: AppBundle\Command\FetchFeeds
+    app.command.feed.summary:
+        class: AppBundle\Command\Feed\Summary
         arguments: ["@use_cases.fetch_feeds.use_case", '%temp_user_uuid%']
         tags:
             - { name: console.command }
@@ -43,16 +43,16 @@ services:
             host: '%db_host%'
             serverVersion: '5.7'
 
-    app.command.create_schema:
-        class: AppBundle\Command\CreateSchema
+    app.command.dbal.create_schema:
+        class: AppBundle\Command\DBAL\CreateSchema
         arguments:
             $dbal: '@connection'
             $dbName: '%db_name%'
         tags:
           - { name: console.command }
 
-    app.command.create_feed:
-        class: AppBundle\Command\CreateFeed
+    app.command.feed.create:
+        class: AppBundle\Command\Feed\Create
         arguments:
             - "@use_cases.create_feed.use_case"
             - "%temp_user_uuid%"

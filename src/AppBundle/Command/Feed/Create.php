@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppBundle\Command;
+namespace AppBundle\Command\Feeds;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use UseCases\CreateFeed as UseCase;
 
-class CreateFeed extends Command
+class Create extends Command
 {
     /** @var UseCase\UseCase */
     private $useCase;

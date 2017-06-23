@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppBundle\Command;
+namespace AppBundle\Command\Feed;
 
 use Domain\Model\Feed;
 use Symfony\Component\Console\Command\Command;
@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\Table;
 
-class FetchFeeds extends Command
+class Summary extends Command
 {
     /** @var UseCase\UseCase */
     private $useCase;
@@ -34,9 +34,9 @@ class FetchFeeds extends Command
     protected function configure()
     {
         $this
-            ->setName('magnolia:feed:fetch')
+            ->setName('magnolia:feed:summary')
             ->addArgument('userId', InputArgument::OPTIONAL, '', $this->defaultUserId)
-            ->setDescription('Fetch all feeds for a user')
+            ->setDescription('Fetch a summary of feeds for a user')
         ;
     }
 
