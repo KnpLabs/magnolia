@@ -20,12 +20,12 @@ class Response
         $this->errors = $errors;
     }
 
-    public function succeeded(array $feeds): self
+    public static function succeeded(array $feeds): self
     {
         return new self($feeds, []);
     }
 
-    public function failed(array $errors): self
+    public static function failed(array $errors): self
     {
         return new self([], $errors);
     }

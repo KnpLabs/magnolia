@@ -41,10 +41,28 @@ services:
             host: '%db_host%'
             serverVersion: '5.7'
 
-    AppBundle\Command\CreateSchema:
+    app.command.create_schema:
         class: AppBundle\Command\CreateSchema
         arguments:
             $dbal: '@connection'
             $dbName: '%db_name%'
         tags:
           - { name: console.command }
+
+    app.command.create_feed:
+        class: AppBundle\Command\CreateFeed
+        arguments:
+            - "@use_cases.create_feed.use_case"
+            - "%temp_user_uuid%"
+        tags:
+            - { name: console.command }
+
+    use_cases.create_feed.use_case:
+        class: UseCases\CreateFeed\UseCase
+        arguments:
+            - "@infrastructure.dbal.feed_persister"
+
+    infrastructure.dbal.feed_persister:
+        class: Infrastructure\DBAL\FeedPersister
+        arguments:
+            - "@connection"

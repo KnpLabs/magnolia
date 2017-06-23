@@ -27,7 +27,7 @@ class FeedFetcher implements Domain\FeedFetcher
         $feedsData = $stmt->fetchAll();
 
         return array_map(function($data) {
-            return new Feed($data['id'], $data['userId']);
+            return new Feed($data['id'], $data['name'], $data['userId']);
         }, $feedsData);
     }
 }
