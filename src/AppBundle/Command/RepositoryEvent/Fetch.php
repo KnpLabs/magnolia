@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppBundle\Command;
+namespace AppBundle\Command\RepositoryEvent;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use UseCases\FetchRepoEvents as UseCase;
 use Symfony\Component\Console\Command\Command;
 
-class FetchRepoEvents extends Command
+class Fetch extends Command
 {
     /** @var UseCase\UseCase */
     private $useCase;
@@ -25,7 +25,7 @@ class FetchRepoEvents extends Command
     protected function configure()
     {
         $this
-            ->setName('magnolia:event:fetch')
+            ->setName('magnolia:repository-event:fetch')
             ->addArgument('repository', InputArgument::REQUIRED)
         ;
     }

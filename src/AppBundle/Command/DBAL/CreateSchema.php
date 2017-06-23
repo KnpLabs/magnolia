@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppBundle\Command;
+namespace AppBundle\Command\DBAL;
 
 use Symfony\Component\Console\Command\Command;
 use Doctrine\DBAL\Connection;
@@ -33,7 +33,7 @@ class CreateSchema extends Command
     protected function configure()
     {
         $this
-            ->setName('app:create:schema')
+            ->setName('magnolia:dbal:create-schema')
             ->setDescription('Create schema.')
             ->addOption('reset', 'r', InputOption::VALUE_NONE)
         ;
