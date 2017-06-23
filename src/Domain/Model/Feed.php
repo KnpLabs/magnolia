@@ -12,19 +12,37 @@ class Feed
 
     private $userId;
 
-    public function __construct(string $id, string $name, string $userId)
+    /** @var array|Repository[] Should be a filter */
+    private $repositories;
+
+    /**
+     * @param string             $id
+     * @param string             $name
+     * @param string             $userId
+     * @param array|Repository[] $repositories
+     */
+    public function __construct(string $id, string $name, string $userId, array $repositories)
     {
         $this->id = $id;
         $this->name = $name;
         $this->userId = $userId;
+        $this->repositories = $repositories;
     }
 
-    public static function create(string $name, string $userId): self
+    /**
+     * @param string             $name
+     * @param string             $userId
+     * @param array|Repository[] $repositories
+     *
+     * @return Feed
+     */
+    public static function create(string $name, string $userId, array $repositories): self
     {
         return new self(
             Uuid::uuid4()->toString(),
             $name,
-            $userId
+            $userId,
+            $repositories
         );
     }
 
@@ -41,5 +59,10 @@ class Feed
     public function getUserId(): string
     {
         return $this->userId;
+    }
+
+    public function getRepositories(): array
+    {
+        return $this->repositories;
     }
 }

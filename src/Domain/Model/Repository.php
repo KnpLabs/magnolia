@@ -34,4 +34,9 @@ class Repository
     {
         return $this->name;
     }
+
+    public function getFullName(): string
+    {
+        return $this->owner .'/'. $this->name;
+    }
 }

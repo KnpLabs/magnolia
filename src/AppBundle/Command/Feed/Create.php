@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppBundle\Command\Feeds;
+namespace AppBundle\Command\Feed;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -32,6 +32,7 @@ class Create extends Command
         $this
             ->setName('magnolia:feed:create')
             ->addArgument('name', InputArgument::REQUIRED)
+            ->addArgument('repositories', InputArgument::REQUIRED | InputArgument::IS_ARRAY)
         ;
     }
 
@@ -40,7 +41,8 @@ class Create extends Command
         $io = new SymfonyStyle($input, $output);
         $request = new UseCase\Request(
             $input->getArgument('name'),
-            $this->userId
+            $this->userId,
+            $input->getArgument('repositories')
         );
 
         $response = $this->useCase->__invoke($request);

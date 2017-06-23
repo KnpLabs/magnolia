@@ -63,11 +63,14 @@ class CreateSchema extends Command
             'notnull' => true,
             'length' => 36,
         ]);
+        $feeds->addColumn('repositories', 'json', [
+            'notnull' => true,
+        ]);
         $feeds->setPrimaryKey(["id"]);
 
         $events = $schema->createTable(Tables::EVENTS);
         $events->addColumn('id', 'string', ['length' => 36, 'notnull' => true]);
-        $events->addColumn('payload', 'json_array', ['notnull' => true]);
+        $events->addColumn('payload', 'json', ['notnull' => true]);
         $events->addColumn('date', 'datetime', ['notnull' => true]);
         $events->addColumn('repo_owner', 'string', ['notnull' => true]);
         $events->addColumn('repo_name', 'string', ['notnull' => true]);
