@@ -68,9 +68,17 @@ class CreateSchema extends Command
         ]);
         $feeds->setPrimaryKey(["id"]);
 
-        $events = $schema->createTable(Tables::RAW_EVENTS);
+        $rawEvents = $schema->createTable(Tables::RAW_EVENTS);
+        $rawEvents->addColumn('id', 'string', ['length' => 36, 'notnull' => true]);
+        $rawEvents->addColumn('payload', 'json', ['notnull' => true]);
+        $rawEvents->addColumn('date', 'datetime', ['notnull' => true]);
+        $rawEvents->addColumn('repo_owner', 'string', ['notnull' => true]);
+        $rawEvents->addColumn('repo_name', 'string', ['notnull' => true]);
+        $rawEvents->setPrimaryKey(['id']);
+
+        $events = $schema->createTable(Tables::EVENTS);
         $events->addColumn('id', 'string', ['length' => 36, 'notnull' => true]);
-        $events->addColumn('payload', 'json', ['notnull' => true]);
+        $events->addColumn('type', 'string', ['notnull' => true]);
         $events->addColumn('date', 'datetime', ['notnull' => true]);
         $events->addColumn('repo_owner', 'string', ['notnull' => true]);
         $events->addColumn('repo_name', 'string', ['notnull' => true]);

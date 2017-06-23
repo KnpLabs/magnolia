@@ -73,3 +73,30 @@ services:
         class: Infrastructure\DBAL\RawEventPersister
         arguments:
             - "@connection"
+
+    app.command.repository_event.transform:
+        class: AppBundle\Command\RepositoryEvent\Transform
+        arguments:
+            - '@use_cases.transform_repo_events.use_case'
+        tags:
+          - { name: console.command }
+
+    use_cases.transform_repo_events.use_case:
+        class: UseCases\TransformRepoEvents\UseCase
+        arguments:
+            - "@infrastructure.dbal.raw_event_repository"
+            - "@domain.raw_event_transformer"
+            - "@infrastructure.dbal.event_persister"
+
+    infrastructure.dbal.raw_event_repository:
+        class: Infrastructure\DBAL\RawEventRepository
+        arguments:
+            - "@connection"
+
+    domain.raw_event_transformer:
+        class: Domain\RawEventTransformer
+
+    infrastructure.dbal.event_persister:
+        class: Infrastructure\DBAL\EventPersister
+        arguments:
+            - "@connection"
