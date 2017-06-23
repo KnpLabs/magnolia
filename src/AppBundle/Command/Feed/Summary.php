@@ -47,11 +47,11 @@ class Summary extends Command
 
         if ($response->isSuccessful()) {
             $outputData = array_map(function(Feed $feed) {
-                return [$feed->getId(), $feed->getName()];
+                return [$feed->getId(), $feed->getName(), implode(', ', $feed->getRepositories())];
             }, $response->getFeeds());
 
             $table = new Table($output);
-            $table->setHeaders(['id', 'name']);
+            $table->setHeaders(['id', 'name', 'repositories']);
             $table->setRows($outputData);
             $table->render();
 

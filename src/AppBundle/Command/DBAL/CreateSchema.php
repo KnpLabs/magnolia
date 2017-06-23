@@ -63,7 +63,7 @@ class CreateSchema extends Command
             'notnull' => true,
             'length' => 36,
         ]);
-        $feeds->addColumn('repositories', 'json', [
+        $feeds->addColumn('repositories', 'json_array', [
             'notnull' => true,
         ]);
         $feeds->setPrimaryKey(["id"]);

@@ -27,11 +27,11 @@ class FeedFetcher implements Domain\FeedFetcher
         $feedsData = $stmt->fetchAll();
 
         return array_map(function($data) {
-            return new Feed($data['id'], $data['name'], $data['userId'], $data['repositories']);
+            return new Feed($data['id'], $data['name'], $data['userId'], json_decode($data['repositories'], true));
         }, $feedsData);
     }
 
-    public function fetchFeed(string $feedId): Feed?
+    /*public function fetchFeed(string $feedId): Feed?
     {
         $sql = 'SELECT * FROM feeds WHERE id = :id';
         $stmt = $this->dbal->prepare($sql);
@@ -39,5 +39,5 @@ class FeedFetcher implements Domain\FeedFetcher
         $stmt->execute();
 
         return $stmt->fetch();
-    }
+    }*/
 }

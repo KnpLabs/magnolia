@@ -25,12 +25,12 @@ class FeedPersister implements Domain\FeedPersister
                 'id' => $feed->getId(),
                 'name' => $feed->getName(),
                 'userId' => $feed->getUserId(),
-                'repositories' => array_map(function($repository) {
+                'repositories' => array_map(function(Model\Repository $repository) {
                     return $repository->getFullName();
                 }, $feed->getRepositories())
             ],
             [
-                'repositories' => 'json'
+                'repositories' => 'json_array'
             ]
         );
     }

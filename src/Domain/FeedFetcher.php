@@ -8,5 +8,5 @@ interface FeedFetcher
 {
     public function fetchFeeds(string $userId): array;
 
-    public function fetchFeed(string $feedId): Domain\Model\Feed?;
+//    public function fetchFeed(string $feedId): Domain\Model\Feed?;
 }
