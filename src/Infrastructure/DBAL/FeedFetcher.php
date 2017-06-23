@@ -1,11 +1,14 @@
 <?php
 
-namespace AppBundle\Repository;
+declare(strict_types=1);
+
+namespace Infrastructure\DBAL;
 
 use Doctrine\DBAL\Connection;
-use AppBundle\Domain\Model\Feed;
+use Domain\Model\Feed;
+use Domain;
 
-class Feeds
+class FeedFetcher implements Domain\FeedFetcher
 {
     private $dbal;
 

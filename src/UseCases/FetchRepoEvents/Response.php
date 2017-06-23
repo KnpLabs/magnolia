@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace UseCases\FetchRepoEvents;
 
+use UseCases\CanHaveErrors;
+
 class Response
 {
+    use CanHaveErrors;
+
     /** @var int */
     private $fetchedEvents;
-
-    /** @var array|string[] */
-    private $errors;
 
     private function __construct(int $fetchedEvents, array $errors)
     {
@@ -26,16 +27,6 @@ class Response
     public static function failed(array $errors): self
     {
         return new self(0, $errors);
-    }
-
-    public function isSuccessful(): bool
-    {
-        return empty($this->errors);
-    }
-
-    public function getErrors(): array
-    {
-        return $this->errors;
     }
 
     public function getNumberOfFetchedEvents(): int
