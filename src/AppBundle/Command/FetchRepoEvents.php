@@ -25,7 +25,7 @@ class FetchRepoEvents extends Command
     protected function configure()
     {
         $this
-            ->setName('magnolia:fetch')
+            ->setName('magnolia:event:fetch')
             ->addArgument('repository', InputArgument::REQUIRED)
         ;
     }
