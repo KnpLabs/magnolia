@@ -1,6 +1,8 @@
 <?php
 
-namespace AppBundle\Domain\Model;
+declare(strict_types=1);
+
+namespace Domain\Model;
 
 use Ramsey\Uuid\Uuid;
 
@@ -18,5 +20,15 @@ class Feed
             $this->id = Uuid::uuid4()->toString();
         }
         $this->userId = $userId;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getUserId(): string
+    {
+        return $this->userId;
     }
 }

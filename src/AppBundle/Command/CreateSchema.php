@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AppBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
@@ -11,6 +13,8 @@ use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Schema\Schema;
+use Infrastructure\DBAL\FeedPersister;
+use Infrastructure\DBAL\Tables;
 
 class CreateSchema extends Command
 {
@@ -38,7 +42,7 @@ class CreateSchema extends Command
         $output->writeln('Creating schema.');
 
         $schema = new Schema();
-        $feeds = $schema->createTable('feeds');
+        $feeds = $schema->createTable(Tables::FEEDS);
         $feeds->addColumn('id', 'string', [
             'length' => 36,
             'notnull' => true,
