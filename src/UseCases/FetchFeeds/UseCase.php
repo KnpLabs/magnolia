@@ -18,7 +18,7 @@ class UseCase
 
     public function __invoke(Request $request)
     {
-        $feeds = $this->fetcher->getAllFeeds($request->getUserId());
+        $feeds = $this->fetcher->fetchFeeds($request->getUserId());
 
         return Response::succeeded($feeds);
     }
